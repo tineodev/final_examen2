@@ -13,11 +13,10 @@ class Libro():
         return self.libros
 
     def listarLibros(self):
-        '''listar libros involucra: título, género, ISBN,
-         editorial y autor(es).
-         ordenar por titulo
-         '''
-        pass
+        
+        self.res = self.leer()
+        print(self.res.sort_values(by="TITULO", ascending=True).head(3))
+
 
     def buscarLibro(self):
         '''
@@ -35,18 +34,20 @@ class Libro():
          contengan 2 autores.'''
         pass
 
-    def agregarLibro(self):
+    def agregarLibro(self):#//!MAMUT
         pass
 
-    def actualizarLibro(self):
+    def actualizarLibro(self): #//!MAMUT
         '''Editar o actualizar datos de un libro 
         (título, género, ISBN, editorial y autores).
         '''
         pass
 
-    def guardaLibro(self):
+    def guardaLibro(self): #//!MAMUT
         ''' Guardar libros en archivo de disco duro (.txt o csv).'''
         pass
 
-    def eliminarLibro(self):
+    def eliminarLibro(self): #//!MAMUT
         pass
+
+Libro().listarLibros()
