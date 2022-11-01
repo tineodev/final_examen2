@@ -13,7 +13,7 @@ class Pokemon:
         self.urlFormat = ""
         self.urlHabilidad = ""
         self.urlHabitat = "https://pokeapi.co/api/v2/pokemon-habitat/"
-        self.urlTipo = ""
+        self.urlTipo = "https://pokeapi.co/api/v2/type/"
 
         self.__pokeRes = "" #Almacena el json de todas las opciones
 
@@ -32,7 +32,8 @@ class Pokemon:
             self.__pokeRes = self.__conectaAPI(self.urlHabitat)
             self.pokeHabitat()
         if self.sel == 5:
-            pass
+            self.__pokeRes = self.__conectaAPI(self.urlTipo)
+            self.pokeTipo()
 
     
     def __conectaAPI(self,url):
@@ -73,7 +74,7 @@ class Pokemon:
         for i in range(int(self.__pokeRes["count"])):
             lista.append(self.__pokeRes["results"][i]["name"])
 
-        print("\nSelecciona el habitat por su número:")
+        print("\nSelecciona el HABITAT por su número:")
         for i,x in enumerate(lista, start=1):
             print(f"\t[{i}]: {x.capitalize()}")
         
@@ -107,19 +108,34 @@ class Pokemon:
     def pokeTipo(self):
         '''Listar pokemons por tipo. Se deben sugerir
          opciones a ingresar para interactuar.'''
-        pass
+        lista = []
+        for i in range(int(self.__pokeRes["count"])):
+            lista.append(self.__pokeRes["results"][i]["name"])
 
+        print("\nSelecciona el TIPO por su número:")
+        for i,x in enumerate(lista, start=1):
+            print(f"\t[{i}]: {x.capitalize()}")
+        
+        res = ""
+        while res not in range(1,len(lista)+1):
+            try:
+                res = int(input("Ingresa un número comprendido en la lista: "))
+            except ValueError:
+                continue
 
-# while True:
-#     select = input("Ingresa nombre del Pokemon: ").strip().lower()
+        if res == 19:
+            res = 10001
+            print("No hay ningún Pokemón agregado a esta lista.")
+        elif res == 20:
+            res = 10002
+            print("No hay ningún Pokemón agregado a esta lista.")
 
-#     if (select == "") or select.isdigit():
-#         print("\tERROR al ingresar el nombre.")
-#         print("\tInténtelo nuevamente.\n")
-#         time.sleep(0.7)
-#     else:
-#         break
+        listaPokemon = self.__conectaAPI(self.urlTipo+(str(res)))
 
+        for i in range(len(listaPokemon["pokemon"])):
+            self.nomPokemon = listaPokemon["pokemon"][int(i)]["pokemon"]["name"]
+            print(self.nomPokemon)
+            self.pokeDetalles(self.nomPokemon)
 
 while True:
     print("OPCIONES A SELECCIONAR:")
