@@ -1,3 +1,5 @@
+from csv import excel_tab
+from glob import iglob
 import pandas as pd
 
 # Debe utilizar: colecciones (listas, tuplas, etc), 
@@ -6,14 +8,15 @@ import pandas as pd
 class Libro():
 
     def __init__(self):
-        self.libros = pd.read_csv('libros.csv', sep=';')
+        self.libros = pd.read_csv('libros.csv')
+        
 
     def leer(self):
         
         #return self.libros
         pass
 
-    def listarLibros(self):
+    def listarLibros(self): #//!ALVARO
         
         #self.res = self.leer()
         print(self.libros.sort_values(by="TITULO", ascending=True).head(3))
@@ -26,7 +29,7 @@ class Libro():
         '''
         pass
 
-    def buscar_num_Autores(self):
+    def buscar_num_Autores(self): #//!ALVARO
         '''Buscar libros por número de autores. 
         Se debe ingresar un número por ejemplo 2 
         (hace referencia a dos autores) y se 
@@ -59,21 +62,53 @@ class Libro():
 
         
     
-    def agregarLibro(self):#//!MAMUT
-        pass
+    def agregarLibro(self):#//!ALVARO
+        
+        self.ultimoDig = int(self.libros['ID'].tail(1))
+        while True:
+            self.titulo = str(input("Ingresar TITULO del libro: "))
+            if (self.titulo != ""): break
+        while True:
+            self.genero = str(input("Ingresar GENERO del libro: "))
+            if (self.genero != ""): break
+        while True:
+            self.isbn = str(input("Ingresar ISBN del libro: "))
+            if (self.isbn != ""): break
+        while True:
+            self.editorial = str(input("Ingresar EDITORIAL del libro: "))
+            if (self.editorial != ""): break
+        while True:
+            self.autores = str(input("Ingresar AUTOR del libro [Si son más de 2, separar con '|']: "))
+            if (self.autores != ""): break
+            
+        agregar = {
+            'ID': self.ultimoDig+1,
+            'TITULO': self.titulo,
+            'GENERO': self.genero,
+            'ISBN': self.isbn,
+            'EDITORIAL': self.editorial,
+            'AUTORES': self.autores
+        }
 
+        self.libros = self.libros.append(agregar,ignore_index=True)
+
+        self.guardaLibro()
+        
     def actualizarLibro(self): #//!MAMUT
         '''Editar o actualizar datos de un libro 
         (título, género, ISBN, editorial y autores).
         '''
         pass
 
-    def guardaLibro(self): #//!MAMUT
+    def guardaLibro(self): #//!ALVARO
         ''' Guardar libros en archivo de disco duro (.txt o csv).'''
-        pass
+        self.libros.to_csv('libros.csv', index=False)
+        print(self.libros.sort_values(by="TITULO", ascending=True).head(10))
+        
 
     def eliminarLibro(self): #//!MAMUT
         pass
 
 #Libro().listarLibros()
-Libro().buscar_num_Autores()
+#Libro().buscar_num_Autores()
+Libro().agregarLibro()
