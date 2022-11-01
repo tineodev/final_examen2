@@ -1,4 +1,5 @@
-ID;TITULO;GENERO;ISBN;EDITORIAL;AUTOR(es)
+ID;TITULO;GENERO;ISBN;EDITORIAL;AUTORES
 1;Don quijote de la mancha;Aventura;64641646;EspaÑa;cervantes saavedra
 2;otro libro;historia;65416486;planeta;El Autor|La Autora
 3;HarryPotter;fantasia;618868;editoriale;JKKROWLING
+4;CdHyF;fantasia medieval;8226654;cabeza;GRRMartin|uno|y otro

@@ -6,16 +6,17 @@ import pandas as pd
 class Libro():
 
     def __init__(self):
-        pass
+        self.libros = pd.read_csv('libros.csv', sep=';')
 
     def leer(self):
-        self.libros = pd.read_csv('libros.csv', sep=';')
-        return self.libros
+        
+        #return self.libros
+        pass
 
     def listarLibros(self):
         
-        self.res = self.leer()
-        print(self.res.sort_values(by="TITULO", ascending=True).head(3))
+        #self.res = self.leer()
+        print(self.libros.sort_values(by="TITULO", ascending=True).head(3))
 
 
     def buscarLibro(self):
@@ -26,14 +27,38 @@ class Libro():
         pass
 
     def buscar_num_Autores(self):
-
         '''Buscar libros por número de autores. 
         Se debe ingresar un número por ejemplo 2 
         (hace referencia a dos autores) y se 
          deben listar todos los libros que 
          contengan 2 autores.'''
-        pass
 
+        flag = False
+
+        while True:
+            try:
+                num = int(input("Buscar libros por número de autores: "))
+            
+            except ValueError:
+                print("Debe ser un número.")
+            except Exception:
+                print("ERROR: Vuelva a intentarlo.")
+            else:
+                break
+
+        for x in self.libros["AUTORES"].items():
+
+            if (x[1].count("|")+1) == num:
+
+                print(self.libros["TITULO"][int(x[0])])
+                flag = True
+
+        if not(flag):
+
+            print(f"No existen libros con {num} autor(es)")
+
+        
+    
     def agregarLibro(self):#//!MAMUT
         pass
 
@@ -50,4 +75,5 @@ class Libro():
     def eliminarLibro(self): #//!MAMUT
         pass
 
-Libro().listarLibros()
+#Libro().listarLibros()
+Libro().buscar_num_Autores()
