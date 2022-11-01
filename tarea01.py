@@ -11,11 +11,6 @@ class Libro():
         self.libros = pd.read_csv('libros.csv')
         
 
-    def leer(self):
-        
-        #return self.libros
-        pass
-
     def listarLibros(self): #//!ALVARO
         
         #self.res = self.leer()
@@ -23,11 +18,15 @@ class Libro():
 
 
     def buscarLibro(self):
-        '''
-        Buscar libros por autor, editorial o género. 
-        Se deben sugerir las opciones y listar los resultados.
-        '''
+        
+        #resp=self.libros['GENERO']="medieval"
+
+        resp = self.libros.isin({'TITULO':['hambre']})
+        print(resp)
+
+        
         pass
+       #pass
 
     def buscar_num_Autores(self): #//!ALVARO
         '''Buscar libros por número de autores. 
@@ -106,9 +105,18 @@ class Libro():
         print(self.libros.sort_values(by="TITULO", ascending=True).head(10))
         
 
-    def eliminarLibro(self): #//!MAMUT
-        pass
+    # def eliminarLibro(self): #//!MAMUT
+    #     pass
+
+    def eliminar_libro(self,pm_libro):
+        self.libros.drop(pm_libro, inplace=True)
+        self.libros.to_csv('libros.csv', index='False')
+        print(str(self.libros))
+        print(f"Eliminado numero {pm_libro}")
 
 #Libro().listarLibros()
 #Libro().buscar_num_Autores()
-Libro().agregarLibro()
+#Libro().agregarLibro()
+#Libro().buscarLibro()
+
+Libro().eliminar_libro(0)
