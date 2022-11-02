@@ -20,11 +20,11 @@ class Pokemon:
 
     def __pokeSeleccion(self):
         if self.sel == 1:
-            pass
+            self.funcion_universal(self.urlGeneracion, "generación")
         if self.sel == 2:
-            pass
+            self.funcion_universal(self.urlForma, "forma")
         if self.sel == 3:
-            pass
+            self.funcion_universal(self.urlHabilidad, "habilidad")
         if self.sel == 4:
             self.__pokeRes = self.__conectaAPI(self.urlHabitat)
             self.pokeHabitat()
