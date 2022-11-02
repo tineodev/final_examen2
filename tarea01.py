@@ -8,6 +8,9 @@ class Libro():
 
     def __init__(self):
         self.libros = pd.read_csv('libros.csv')
+        self.opciones = ["Listar todos los libros", "Editar libro", "Eliminar libro", "Agregar libro", "Filtrar por ..."]
+        self.filtrar = ["ID","TITULO","GENERO","ISBN","EDITORIAL","AUTORES"]
+        self.cantidad = len(self.libros.index)
 
 
 
