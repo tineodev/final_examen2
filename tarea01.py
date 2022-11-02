@@ -8,7 +8,7 @@ class Libro():
 
     def __init__(self):
         self.libros = pd.read_csv('libros.csv')
-        self.opciones = ["Listar todos los libros", "Editar libro", "Eliminar libro", "Agregar libro", "Filtrar por ..."]
+        self.opciones = ["Listar todos los libros", "Editar libro", "Eliminar libro", "Agregar libro","Buscar por número de autores", "Filtrar por ..."]
         self.filtrar = ["ID","TITULO","GENERO","ISBN","EDITORIAL","AUTORES"]
         self.cantidad = len(self.libros.index)
 
@@ -34,8 +34,10 @@ class Libro():
         elif opcion == 2:
             self.seleccionar_libro(self.cantidad, "eliminar") 
         elif opcion == 3:
-            pass
+            self.agregarLibro()
         elif opcion == 4:
+            self.buscar_num_Autores()
+        elif opcion == 5:
             pass
         else:
             exit()
