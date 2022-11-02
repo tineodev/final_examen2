@@ -67,6 +67,13 @@ class Pokemon:
         url = data["results"][numero]["url"]
         data_2 = self.__conectaAPI(url)
 
+        # * Variable & direccion de tipo de dato
+        if pm_tipo_dato in lista_opciones_1:
+            lista_pokemon = [variable["name"] for variable in data_2["pokemon_species"]]
+        else:
+            lista_pokemon = [variable["pokemon"]["name"] for variable in data_2["pokemon"]]
+
+
 
 
 
