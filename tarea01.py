@@ -202,6 +202,8 @@ def fuera_rango(pm_limite, pm_variable, pm_base):
             except:
                 print("Digite un número, vuelva a intentarlo")
 
+
+
 print("Bienvenido!")
 obj_1 = Libro()
 obj_1.preguntar_funcionalidad()
