@@ -47,10 +47,10 @@ class Pokemon:
         pass
 
     # * Funcion - obtener los datos de generacion & forma & habilidad 
-    def funcion_universal(self, pm_url, pm_tipo_dato):
+    def funcion_universal(self, pm_url:str, pm_tipo_dato:str):
         lista_opciones_1 = ["generación", "hábitat", "forma"]
         data = self.__conectaAPI(pm_url)
-        lista_datos = [variable["name"] for variable in data["results"]]
+        lista_datos:list = [variable["name"] for variable in data["results"]]
 
 
         # * Imprime en pantalla - opciones de pm_tipo_dato
@@ -70,10 +70,10 @@ class Pokemon:
 
         # * Variable & direccion de tipo de dato
         if pm_tipo_dato in lista_opciones_1:
-            lista_pokemon = [variable["name"] for variable in data_2["pokemon_species"]]
+            lista_pokemon:list = [variable["name"] for variable in data_2["pokemon_species"]]
         else:
             lista_pokemon = [variable["pokemon"]["name"] for variable in data_2["pokemon"]]
-        lista_pokemon_link = [f"https://pokeapi.co/api/v2/pokemon/{link}/" for link in lista_pokemon]
+        lista_pokemon_link:list = [f"https://pokeapi.co/api/v2/pokemon/{link}/" for link in lista_pokemon]
 
         # * Sacar stats de cada pokemon:
         for i in lista_pokemon_link:
@@ -87,23 +87,27 @@ class Pokemon:
             print()
 
 
-
+    # ! Eliminar
     def pokeGeneracion(self):
         '''Listar pokemons por generación. 
         Se ingresa alguna generación (1, 2, 3, ..)
         y se listan todos los pokemon respectivos.'''
         pass
 
+    # ! Eliminar
     def pokeForma(self):
         '''Listar pokemons por forma. Se ingresa 
         alguna forma (deben sugerir valores) y se 
         listan todos los pokemons respectivos.'''
         pass
 
+    # ! Eliminar
     def pokeHabilidad(self):
         '''Listar pokemons por habilidad. Se deben 
         sugerir opciones a ingresar para interactuar.'''
-    
+
+
+
     def pokeHabitat(self):
         lista = []
         for i in range(int(self.__pokeRes["count"])):  # type: ignore
