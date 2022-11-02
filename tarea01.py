@@ -90,6 +90,25 @@ class Libro():
 
 
 
+    def seleccionar_libro(self, pm_limite:int, pm_opcion):
+        ''' * Indica indice del libro '''
+        print(self.libros)
+        indice = fuera_rango(pm_limite, "Índice del libro", -1)
+        try:
+            try:
+                if pm_opcion == "actualizar":
+                    self.actualizar_libro(indice)
+                elif pm_opcion =="eliminar":
+                    self.eliminar_libro(indice)
+            except:
+                print("Libro no encontrado, pruebe otra vez")
+        except:
+            limpiar_consola()
+            print(self.libros)
+            self.preguntar_funcionalidad()
+
+
+
     def actualizarLibro(self):
         '''Editar o actualizar datos de un libro 
         (título, género, ISBN, editorial y autores).
