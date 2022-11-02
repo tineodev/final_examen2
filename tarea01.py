@@ -173,6 +173,35 @@ class Libro():
         print(f"Eliminado numero {pm_libro}")
 
 
+
+
+# ? Funciones extra
+# * Funcion limpiar consola
+def limpiar_consola():
+    if os.name == "nt": 
+        os.system("cls")
+    else:
+        os.system("clear")
+
+
+
+#* Funcion evitar salir de rango
+def fuera_rango(pm_limite, pm_variable, pm_base):
+    while True:
+        numero_rango = input(f"{pm_variable}: ")
+        if numero_rango.lower().strip() == "exit":
+            break
+        else:
+            try:
+                numero_rango = int(numero_rango)
+                if  numero_rango > pm_limite or numero_rango <= pm_base:
+                    print(f"{pm_variable} fuera de límite")
+                else:
+                    limpiar_consola()
+                    return numero_rango
+            except:
+                print("Digite un número, vuelva a intentarlo")
+
 print("Bienvenido!")
 obj_1 = Libro()
 obj_1.preguntar_funcionalidad()
