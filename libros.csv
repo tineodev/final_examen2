@@ -1,6 +1,5 @@
 ID,TITULO,GENERO,ISBN,EDITORIAL,AUTORES
-123456,Libro Nuevo,Accion,15684984-asdad,Editorial Lumbreras,Andrew|Jhon|Artur
-123456,Libro 22,Accion,15684984-asdad,Editorial Lumbreras,Andrew|Jhon|Artur
-123456,Libro 33,Accion,15684984-asdad,Editorial Lumbreras,Andrew|Jhon|Artur
-123456,Libro 44,Accion,15684984-asdad,Editorial Lumbreras,Andrew|Jhon|Artur
-123456,Libro 66,Accion,15684984-asdad,Alfaguara ED,Andrew|Jhon|Artur
+100100,The Media in the Network Society,Internet,978-1-84753-792-8,CIES,Gustavo Cardoso|Manuel Castells|Ana Abranches
+100200,The future of the Internet and how to stop it,Internet,978-0-300-15124-4,Yale University Press,Jonathan Zittrain
+100300,Web 2 para empresarios,Internet,978-958-99999-0,Corporación Colombia Digital,Raphael Orduz
+100400,Social Media IOR,Marketing,978-84-9981-567-1,Bubok Publishing SL,Johana Cavalcanti|Juan Sobejano
