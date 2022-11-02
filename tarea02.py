@@ -1,4 +1,3 @@
-from pandas import reset_option
 import requests
 import time
 
@@ -10,7 +9,7 @@ class Pokemon:
         self.sel = sel
         self.urlPokemon = 'https://pokeapi.co/api/v2/pokemon/'
         self.urlGeneracion = ""
-        self.urlFormat = ""
+        self.urlForma = ""
         self.urlHabilidad = ""
         self.urlHabitat = "https://pokeapi.co/api/v2/pokemon-habitat/"
         self.urlTipo = "https://pokeapi.co/api/v2/type/"
@@ -20,8 +19,6 @@ class Pokemon:
         self.__pokeSeleccion()
 
     def __pokeSeleccion(self):
-
-    
         if self.sel == 1:
             pass
         if self.sel == 2:
@@ -46,13 +43,13 @@ class Pokemon:
             return res.json()
         
 
-    def __str__(self) -> str:
+    def __str__(self) -> None:
         pass
 
     def pokeGeneracion(self):
         '''Listar pokemons por generación. 
-         Se ingresa alguna generación (1, 2, 3, ..)
-         y se listan todos los pokemon respectivos.'''
+        Se ingresa alguna generación (1, 2, 3, ..)
+        y se listan todos los pokemon respectivos.'''
         pass
 
     def pokeForma(self):
@@ -66,10 +63,6 @@ class Pokemon:
         sugerir opciones a ingresar para interactuar.'''
     
     def pokeHabitat(self):
-        '''Listar pokemons por habitat. Se deben sugerir 
-        opciones a ingresar para interactuar.'''
-        
-        #self.__pokeSeleccion()
         lista = []
         for i in range(int(self.__pokeRes["count"])):
             lista.append(self.__pokeRes["results"][i]["name"])
@@ -81,7 +74,7 @@ class Pokemon:
         res = ""
         while res not in range(1,len(lista)+1):
             try:
-                res = int(input("Ingresa un número comprendido en la lista: "))
+                res = int(input("OPCIÓN: "))
             except ValueError:
                 continue
 
@@ -97,7 +90,7 @@ class Pokemon:
 
         self.infoPokemon = self.__conectaAPI(self.urlPokemon + nombre)
 
-        print(nombre.upper())
+        print(f"\t{nombre.upper()}")
         print("\tImagen: ", self.infoPokemon['sprites']['front_default'])
         print("\tHabilidades:")
 
@@ -119,7 +112,7 @@ class Pokemon:
         res = ""
         while res not in range(1,len(lista)+1):
             try:
-                res = int(input("Ingresa un número comprendido en la lista: "))
+                res = int(input("OPCIÓN: "))
             except ValueError:
                 continue
 
@@ -134,7 +127,6 @@ class Pokemon:
 
         for i in range(len(listaPokemon["pokemon"])):
             self.nomPokemon = listaPokemon["pokemon"][int(i)]["pokemon"]["name"]
-            print(self.nomPokemon)
             self.pokeDetalles(self.nomPokemon)
 
 while True:
@@ -158,8 +150,4 @@ while True:
         else:
             break
 
-
 Pokemon(sel)
-#print(Pokemon().pokemon)
-
-

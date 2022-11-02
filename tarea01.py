@@ -17,16 +17,8 @@ class Libro():
         print(self.libros.sort_values(by="TITULO", ascending=True).head(3))
 
 
-    def buscarLibro(self):
-        
-        #resp=self.libros['GENERO']="medieval"
-
-        resp = self.libros.isin({'TITULO':['hambre']})
-        print(resp)
-
-        
+    def buscarLibro(self, cat, search): #! SATOSHI
         pass
-       #pass
 
     def buscar_num_Autores(self): #//!ALVARO
         '''Buscar libros por número de autores. 
@@ -108,15 +100,12 @@ class Libro():
     # def eliminarLibro(self): #//!MAMUT
     #     pass
 
-    def eliminar_libro(self,pm_libro):
-        self.libros.drop(pm_libro, inplace=True)
-        self.libros.to_csv('libros.csv', index='False')
-        print(str(self.libros))
-        print(f"Eliminado numero {pm_libro}")
+    def eliminar_libro(self,):
+        pass
 
 #Libro().listarLibros()
 #Libro().buscar_num_Autores()
 #Libro().agregarLibro()
 #Libro().buscarLibro()
 
-Libro().eliminar_libro(0)
+#Libro().eliminar_libro(0)
