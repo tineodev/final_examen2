@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 # Debe utilizar: colecciones (listas, tuplas, etc), 
 # funciones y clases de Python.
@@ -8,12 +9,18 @@ class Libro():
     def __init__(self):
         self.libros = pd.read_csv('libros.csv')
 
+
+
     def leer(self):
         self.libros = pd.read_csv('libros.csv', sep=';')
         return self.libros
 
+
+
     def listarLibros(self):
         print(self.libros.sort_values(by="TITULO", ascending=True).head(3))
+
+
 
     def buscarLibro(self):
         '''
@@ -22,8 +29,9 @@ class Libro():
         '''
         pass
 
-    def buscar_num_Autores(self):
 
+
+    def buscar_num_Autores(self):
         flag = False
         while True:
             try:
@@ -44,8 +52,12 @@ class Libro():
         if not(flag):
             print(f"No existen libros con {num} autor(es)")
 
+
+
     def agregarLibro(self):
         pass
+
+
 
     def actualizarLibro(self):
         '''Editar o actualizar datos de un libro 
@@ -53,14 +65,20 @@ class Libro():
         '''
         pass
 
+
+
     def guardaLibro(self):
         ''' Guardar libros en archivo de disco duro (.txt o csv).'''
         self.libros.to_csv('libros.csv', index=False)
         print(self.libros.sort_values(by="TITULO", ascending=True).head(10))
+
+
 
     def eliminarLibro(self):
         pass
 
 
 print("Bienvenido!")
-print("Marque la opción que desea realizar.")
+obj_1 = Libro()
+obj_1.preguntar_funcionalidad()
+
