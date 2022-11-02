@@ -32,7 +32,7 @@ class Pokemon:
             self.__pokeRes = self.__conectaAPI(self.urlTipo)
             self.pokeTipo()
 
-    
+
     def __conectaAPI(self,url):
         res = requests.get(url)
 
@@ -41,10 +41,53 @@ class Pokemon:
             exit()
         else:
             return res.json()
-        
+
 
     def __str__(self) -> None:
         pass
+
+    # * Funcion - obtener los datos de generacion & forma & habilidad 
+    def funcion_universal(self, pm_url, pm_tipo_dato):
+        lista_opciones_1 = ["generación", "hábitat", "forma"]
+        data = self.__conectaAPI(pm_url)
+        lista_datos = [variable["name"] for variable in data["results"]]
+
+
+        # * Imprime en pantalla - opciones de pm_tipo_dato
+        print(f"Digite la opción de {pm_tipo_dato} del que desea ver")
+        contador = 0
+        for i in lista_datos:
+            print(f"[{contador+1}]: {i}")
+            contador+=1
+        numero = int(input("Opción: "))
+        numero -= 1
+
+
+        # * Url abilities - especies + link
+        url = data["results"][numero]["url"]
+        data_2 = self.__conectaAPI(url)
+
+
+        # * Variable & direccion de tipo de dato
+        if pm_tipo_dato in lista_opciones_1:
+            lista_pokemon = [variable["name"] for variable in data_2["pokemon_species"]]
+        else:
+            lista_pokemon = [variable["pokemon"]["name"] for variable in data_2["pokemon"]]
+
+
+        lista_pokemon_link = [f"https://pokeapi.co/api/v2/pokemon/{link}/" for link in lista_pokemon]
+
+        # * Sacar stats de cada pokemon:
+        for i in lista_pokemon_link:
+            data_3 = self.__conectaAPI(i)
+            print(f"Nombre: {data_3['name']}")
+            print(f"URL Imagen: {data_3['sprites']['front_default']}")
+            lista_abilities = [skill["ability"]["name"] for skill in data_3["abilities"]]
+            print("Habilidades:")
+            for i in lista_abilities:
+                print(f"\t{i}")
+            print()
+
 
     def pokeGeneracion(self):
         '''Listar pokemons por generación. 
