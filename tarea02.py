@@ -67,14 +67,24 @@ class Pokemon:
         url = data["results"][numero]["url"]
         data_2 = self.__conectaAPI(url)
 
+
         # * Variable & direccion de tipo de dato
         if pm_tipo_dato in lista_opciones_1:
             lista_pokemon = [variable["name"] for variable in data_2["pokemon_species"]]
         else:
             lista_pokemon = [variable["pokemon"]["name"] for variable in data_2["pokemon"]]
+        lista_pokemon_link = [f"https://pokeapi.co/api/v2/pokemon/{link}/" for link in lista_pokemon]
 
-
-
+        # * Sacar stats de cada pokemon:
+        for i in lista_pokemon_link:
+            data_3 = self.__conectaAPI(i)
+            print(f"Nombre: {data_3['name']}")
+            print(f"URL Imagen: {data_3['sprites']['front_default']}")
+            lista_abilities = [skill["ability"]["name"] for skill in data_3["abilities"]]
+            print("Habilidades:")
+            for i in lista_abilities:
+                print(f"\t{i}")
+            print()
 
 
 
