@@ -8,9 +8,9 @@ class Pokemon:
         # self.pk = self.__conectaAPI()
         self.sel = sel
         self.urlPokemon = 'https://pokeapi.co/api/v2/pokemon/'
-        self.urlGeneracion = ""
-        self.urlForma = ""
-        self.urlHabilidad = ""
+        self.urlGeneracion = "https://pokeapi.co/api/v2/generation/"
+        self.urlForma = "https://pokeapi.co/api/v2/pokemon-shape/"
+        self.urlHabilidad = "https://pokeapi.co/api/v2/ability/"
         self.urlHabitat = "https://pokeapi.co/api/v2/pokemon-habitat/"
         self.urlTipo = "https://pokeapi.co/api/v2/type/"
 
