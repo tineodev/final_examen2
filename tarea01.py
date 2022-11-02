@@ -14,6 +14,34 @@ class Libro():
 
 
 
+    def preguntar_funcionalidad(self):
+        ''' Pregunta al usuario que accion quiere realizar'''
+        print("\nFuncionalidades: ")
+        contador = 0
+        for i in self.opciones:
+            print(f"{contador+1}) {i}")
+            contador +=1
+        opcion = fuera_rango(contador, "Opción", 0)
+        opcion -=1 # type: ignore
+        opcion_escogida = self.opciones[opcion]
+        print(f" Opcion escogida: {opcion_escogida}\n")
+        
+        # * Ejecutar funcion
+        if opcion ==0:
+            self.listarLibros()
+        if opcion == 1:
+            self.seleccionar_libro(self.cantidad, "actualizar") 
+        elif opcion == 2:
+            self.seleccionar_libro(self.cantidad, "eliminar") 
+        elif opcion == 3:
+            pass
+        elif opcion == 4:
+            pass
+        else:
+            exit()
+
+
+
     def leer(self):
         self.libros = pd.read_csv('libros.csv', sep=';')
         return self.libros
