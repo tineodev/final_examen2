@@ -6,18 +6,14 @@ import pandas as pd
 class Libro():
 
     def __init__(self):
-        pass
+        self.libros = pd.read_csv('libros.csv')
 
     def leer(self):
         self.libros = pd.read_csv('libros.csv', sep=';')
         return self.libros
 
     def listarLibros(self):
-        '''listar libros involucra: título, género, ISBN,
-         editorial y autor(es).
-         ordenar por titulo
-         '''
-        pass
+        print(self.libros.sort_values(by="TITULO", ascending=True).head(3))
 
     def buscarLibro(self):
         '''
