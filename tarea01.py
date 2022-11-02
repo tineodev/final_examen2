@@ -55,7 +55,8 @@ class Libro():
 
     def guardaLibro(self):
         ''' Guardar libros en archivo de disco duro (.txt o csv).'''
-        pass
+        self.libros.to_csv('libros.csv', index=False)
+        print(self.libros.sort_values(by="TITULO", ascending=True).head(10))
 
     def eliminarLibro(self):
         pass
