@@ -77,7 +77,7 @@ class Libro():
 
         for x in self.libros["AUTORES"].items():
             if (x[1].count("|")+1) == num:
-                print(self.libros["TITULO"][int(x[0])])
+                print(self.libros["TITULO"][int(x[0])]) #type: ignore
                 flag = True
 
         if not(flag):
@@ -109,11 +109,53 @@ class Libro():
 
 
 
-    def actualizarLibro(self):
+    def actualizar_libro(self,pm_libro):
         '''Editar o actualizar datos de un libro 
         (título, género, ISBN, editorial y autores).
         '''
-        pass
+        print("Modo edición\n")
+        unidad = self.libros.iloc[pm_libro]
+        print(unidad)
+
+        def actualizar_unidad(pm_libro):
+            lista = list(unidad)   # type: ignore
+            # Opciones
+            lista_items = ["ID","TITULO","GENERO","ISBN","EDITORIAL","AUTORES"]
+            print("ID - TITULO - GENERO - ISBN - EDITORIAL - AUTORES")
+
+            # Preguntar item a editar
+            while True:
+                pregunta = input("(EXIT para salir) ¿Qué item desea editar? ").upper().strip()
+                if pregunta == "EXIT":
+                    limpiar_consola()
+                    break
+                elif pregunta not in lista_items:
+                    print("Ingrese un valor correcto o escriba EXIT\n")
+                else:
+                    if pregunta == lista_items[5]:
+                        print("Formato:\n\tAutor 1|Autor 2|Autor3 ...")
+                    index = lista_items.index(pregunta)
+                    cambiar = input(f"Cambiar '{lista[index]}' por: ")
+                    print(f"Se cambió {pregunta}")
+                    self.libros._set_value(pm_libro, pregunta, cambiar)
+                    self.libros.to_csv('libros.csv', encoding='utf-8', index=False)
+
+        # Preguntar Editar el libro
+        while True:
+            pregunta = input("\n¿Desea editar este libro? (Y/N) ").lower().strip()
+            if pregunta == "y":
+                print()
+                print("Modo Edición")
+                actualizar_unidad(pm_libro)
+                break
+            elif pregunta == "n":
+                limpiar_consola()
+                print("Modo vista")
+                self.preguntar_funcionalidad()
+                break
+            else:
+                print("Intentelo de nuevo")
+        print(self.libros)
 
 
 
