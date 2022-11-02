@@ -64,8 +64,8 @@ class Pokemon:
     
     def pokeHabitat(self):
         lista = []
-        for i in range(int(self.__pokeRes["count"])):
-            lista.append(self.__pokeRes["results"][i]["name"])
+        for i in range(int(self.__pokeRes["count"])):  # type: ignore
+            lista.append(self.__pokeRes["results"][i]["name"]) # type: ignore
 
         print("\nSelecciona el HABITAT por su número:")
         for i,x in enumerate(lista, start=1):
@@ -100,10 +100,10 @@ class Pokemon:
     
     def pokeTipo(self):
         '''Listar pokemons por tipo. Se deben sugerir
-         opciones a ingresar para interactuar.'''
+        opciones a ingresar para interactuar.'''
         lista = []
-        for i in range(int(self.__pokeRes["count"])):
-            lista.append(self.__pokeRes["results"][i]["name"])
+        for i in range(int(self.__pokeRes["count"])): # type: ignore
+            lista.append(self.__pokeRes["results"][i]["name"]) # type: ignore
 
         print("\nSelecciona el TIPO por su número:")
         for i,x in enumerate(lista, start=1):
