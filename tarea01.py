@@ -165,9 +165,12 @@ class Libro():
         print(self.libros.sort_values(by="TITULO", ascending=True).head(10))
 
 
-
-    def eliminarLibro(self):
-        pass
+    def eliminar_libro(self,pm_libro):
+        print("Modo eliminar libro")
+        self.libros.drop(pm_libro, inplace=True)
+        self.libros.to_csv('libros.csv', index=False)
+        print(self.libros)
+        print(f"Eliminado numero {pm_libro}")
 
 
 print("Bienvenido!")
