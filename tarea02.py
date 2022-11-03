@@ -1,5 +1,7 @@
 import requests
 import time
+import os
+
 
 #listar pokemons involucra: nombre, habilidad y URL de la imagen
 class Pokemon:
@@ -59,8 +61,9 @@ class Pokemon:
         for i in lista_datos:
             print(f"[{contador+1}]: {i}")
             contador+=1
-        numero = int(input("Opción: "))
-        numero -= 1
+        # numero = int(input("Opción: "))
+        # numero -= 1
+        numero = fuera_rango(len(lista_datos)) -1 #type: ignore
 
 
         # * Url especiess + link
@@ -74,6 +77,10 @@ class Pokemon:
         else:
             lista_pokemon = [variable["pokemon"]["name"] for variable in data_2["pokemon"]]
         lista_pokemon_link:list = [f"https://pokeapi.co/api/v2/pokemon/{link}/" for link in lista_pokemon]
+
+        titulo = f" {pm_tipo_dato.capitalize()} - Pokemons "
+        print(titulo.center(60, "="))
+        print()
 
         # * Sacar stats de cada pokemon:
         for i in lista_pokemon_link:
@@ -154,6 +161,36 @@ class Pokemon:
             self.nomPokemon = listaPokemon["pokemon"][int(i)]["pokemon"]["name"]
             self.pokeDetalles(self.nomPokemon)
 
+
+
+#* Funcion limpiar consola
+def limpiar_consola():
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")
+
+
+
+#* Funcion evitar salir de rango
+def fuera_rango(pm_limite):
+    while True:
+        numero_rango = input("Opción: / EXIT para salir. ")
+        if numero_rango == "exit":
+            break
+        else:
+            try:
+                numero_rango = int(numero_rango)
+                if  numero_rango > pm_limite or numero_rango <= 0:
+                    print("Opción fuera de límite")
+                else:
+                    limpiar_consola()
+                    return numero_rango
+            except:
+                print("Digite un número, vuelva a intentarlo")
+
+
+
 while True:
     print("OPCIONES A SELECCIONAR:")
     print("\t[1]: Listar por generación.")
@@ -174,5 +211,7 @@ while True:
             continue
         else:
             break
+
+
 
 Pokemon(sel)
