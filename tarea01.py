@@ -88,7 +88,7 @@ class Libro():
 
     def agregarLibro(self):
 
-        self.ultimoDig = int(self.libros['ID'].tail(1))
+        self.ultimoDig = int(self.libros['ID'].tail(1)) #type: ignore
         while True:
             self.titulo = str(input("Ingresar TITULO del libro: "))
             if (self.titulo != ""): break
