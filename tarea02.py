@@ -87,27 +87,6 @@ class Pokemon:
             print()
 
 
-    # ! Eliminar
-    def pokeGeneracion(self):
-        '''Listar pokemons por generación. 
-        Se ingresa alguna generación (1, 2, 3, ..)
-        y se listan todos los pokemon respectivos.'''
-        pass
-
-    # ! Eliminar
-    def pokeForma(self):
-        '''Listar pokemons por forma. Se ingresa 
-        alguna forma (deben sugerir valores) y se 
-        listan todos los pokemons respectivos.'''
-        pass
-
-    # ! Eliminar
-    def pokeHabilidad(self):
-        '''Listar pokemons por habilidad. Se deben 
-        sugerir opciones a ingresar para interactuar.'''
-
-
-
     def pokeHabitat(self):
         lista = []
         for i in range(int(self.__pokeRes["count"])):  # type: ignore
