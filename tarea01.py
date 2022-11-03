@@ -8,8 +8,8 @@ class Libro():
 
     def __init__(self):
         self.libros = pd.read_csv('libros.csv')
-        self.opciones = ["Listar todos los libros", "Editar libro", "Eliminar libro", "Agregar libro","Buscar por número de autores", "Filtrar por ..."]
-        self.filtrar = ["ID","TITULO","GENERO","ISBN","EDITORIAL","AUTORES"]
+        self.opciones = ["Listar todos los libros", "Editar libro", "Eliminar libro", "Agregar libro","Buscar por número de autores", "Buscar por ..."]
+        self.filtrar = ["TITULO","GENERO","ISBN","EDITORIAL","AUTORES"]
         self.cantidad = len(self.libros.index)
 
 
@@ -38,7 +38,7 @@ class Libro():
         elif opcion == 4:
             self.buscar_num_Autores()
         elif opcion == 5:
-            pass
+            self.buscarLibro()
         else:
             exit()
 
@@ -60,7 +60,22 @@ class Libro():
         Buscar libros por autor, editorial o género. 
         Se deben sugerir las opciones y listar los resultados.
         '''
-        pass
+        print("Modo búsqueda:")
+        for i in self.filtrar:
+            print(f"* {i}")
+        columna = input("Ingrese una opcion: ").upper().strip()
+        celda = input(f"Ingrese una opcion de {columna}: ").strip()
+
+        try: 
+            match columna:
+                case 'ISBN':
+                    dataFrame = self.libros[self.libros['ISBN'] == celda]
+                    print(dataFrame)
+                case _:
+                    dataFrame = self.libros[self.libros[columna].str.contains(celda)]
+                    print(dataFrame)
+        except:
+            print(f"No se ha encontrado {celda} en {columna}, inténtelo de nuevo.")
 
 
 
