@@ -8,7 +8,7 @@ class Libro():
 
     def __init__(self):
         self.libros = pd.read_csv('libros.csv')
-        self.opciones = ["Listar todos los libros", "Editar libro", "Eliminar libro", "Agregar libro", "Filtrar por ..."]
+        self.opciones = ["Listar todos los libros", "Editar libro", "Eliminar libro", "Agregar libro","Buscar por número de autores", "Filtrar por ..."]
         self.filtrar = ["ID","TITULO","GENERO","ISBN","EDITORIAL","AUTORES"]
         self.cantidad = len(self.libros.index)
 
@@ -34,8 +34,10 @@ class Libro():
         elif opcion == 2:
             self.seleccionar_libro(self.cantidad, "eliminar") 
         elif opcion == 3:
-            pass
+            self.agregarLibro()
         elif opcion == 4:
+            self.buscar_num_Autores()
+        elif opcion == 5:
             pass
         else:
             exit()
@@ -84,11 +86,37 @@ class Libro():
             print(f"No existen libros con {num} autor(es)")
 
 
-
     def agregarLibro(self):
-        pass
 
+        self.ultimoDig = int(self.libros['ID'].tail(1))
+        while True:
+            self.titulo = str(input("Ingresar TITULO del libro: "))
+            if (self.titulo != ""): break
+        while True:
+            self.genero = str(input("Ingresar GENERO del libro: "))
+            if (self.genero != ""): break
+        while True:
+            self.isbn = str(input("Ingresar ISBN del libro: "))
+            if (self.isbn != ""): break
+        while True:
+            self.editorial = str(input("Ingresar EDITORIAL del libro: "))
+            if (self.editorial != ""): break
+        while True:
+            self.autores = str(input("Ingresar AUTOR del libro [Si son más de 2, separar con '|']: "))
+            if (self.autores != ""): break
+            
+        agregar = {
+            'ID': self.ultimoDig+1,
+            'TITULO': self.titulo,
+            'GENERO': self.genero,
+            'ISBN': self.isbn,
+            'EDITORIAL': self.editorial,
+            'AUTORES': self.autores
+        }
 
+        self.libros = self.libros.append(agregar,ignore_index=True)
+
+        self.guardaLibro()
 
     def seleccionar_libro(self, pm_limite:int, pm_opcion):
         ''' * Indica indice del libro '''
